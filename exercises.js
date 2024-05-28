@@ -1,2 +1,9 @@
-let numbers = [1,2,3,4];
-console.log(numbers);
+let values = ["true", "false", "true", "false"];
+let count = 0;
+values.forEach((value) => {
+     if (value === "true") {
+         count++;
+     }
+});
+
+console.log(count);

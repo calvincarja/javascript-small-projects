@@ -78,3 +78,15 @@ if (fieldElement) {
         console.log(`Field "${fieldname}" found:`, fieldElement);
     }
 })
+
+// add an eventlistener to the function
+document.addEventListener('DOMContentLoaded', function () {
+    (function () {
+        const fieldname = 'Display Title Tag';
+        const fieldElement = document.querySelector(`[name="${fieldname}"]`);
+
+        if (fieldElement) {
+            console.log(`Field "${fieldname}" found:`, fieldElement);
+        }
+    })();
+});

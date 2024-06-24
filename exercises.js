@@ -1,4 +1,5 @@
-/* 
+/* Array Lesson ****************************************************
+
 // function to count the amount of times the string "true" appears in the array
 let values = ["true", "false", "true", "false"];
 let count = 0;
@@ -9,7 +10,7 @@ values.forEach((value) => {
 });
 
 console.log(count);
-*/
+
 
 
 function countsheep(sheep) {
@@ -35,3 +36,22 @@ function countsheep(sheep) {
 let values1 = ["true", "false", "true", "false"];
 
 console.log(countsheep(values1));
+// in javascript, @include is more flexible than @match
+*/
+
+// user script examples ****************************************************
+
+// find specific field
+
+const fieldname = 'Display Title Tag';
+// const field = document.querySelector('[name="${fieldname}"]'); // there was an issue with the quotes, i needed to use backticks
+
+const field = document.querySelector(`[name="${fieldname}"]`);
+
+/*
+The $ sign is not a special character in this context; it's just a part of the template literal syntax.
+Here's a breakdown of the syntax:
+${}: Template literal placeholder
+fieldName: The variable being inserted into the string
+*/
+

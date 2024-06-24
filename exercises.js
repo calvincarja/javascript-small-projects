@@ -43,10 +43,14 @@ console.log(countsheep(values1));
 
 // find specific field
 
+
+/*
 const fieldname = 'Display Title Tag';
 // const field = document.querySelector('[name="${fieldname}"]'); // there was an issue with the quotes, i needed to use backticks
 
-const field = document.querySelector(`[name="${fieldname}"]`);
+const fieldElement = document.querySelector(`[name="${fieldname}"]`);
+*/
+
 
 /*
 The $ sign is not a special character in this context; it's just a part of the template literal syntax.
@@ -55,3 +59,22 @@ ${}: Template literal placeholder
 fieldName: The variable being inserted into the string
 */
 
+
+/*
+
+
+if (fieldElement) {
+    console.log('Field "${fieldname}" found:', fieldElement);
+}
+*/
+
+// put together into a function
+(function () {
+
+    const fieldname = 'Display Title Tag';
+    const fieldElement = document.querySelector(`[name="${fieldname}"]`);
+
+    if (fieldElement) {
+        console.log(`Field "${fieldname}" found:`, fieldElement);
+    }
+})

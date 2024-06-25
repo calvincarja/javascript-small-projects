@@ -97,10 +97,16 @@ document.addEventListener('DOMContentLoaded', function () {
 // rewriting the function to a simple wait, and find keyword approach
 setTimeout(function(){
     const keyword = "Display Title";
-    const pageText = document.body.textContent;
+    const pageText = document.body.textContent; // dom element
     if (pageText.includes(keyword)) {
       console.log(`Keyword "${keyword}" found!`);
     } else {
       console.log(`Keyword "${keyword}" not found!`);
     }
+  }, 5000); // Wait 5 seconds before searching for the keyword
+
+// rewrote again to display all the labels on the page
+setTimeout(function(){
+    const labels = Array.from(document.querySelectorAll('label')); // convert the nodelist to an array
+    labels.forEach(label => console.log(label.textContent)); // loop through the array and log the text content of each label
   }, 5000); // Wait 5 seconds before searching for the keyword

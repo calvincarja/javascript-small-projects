@@ -82,11 +82,25 @@ if (fieldElement) {
 // add an eventlistener to the function
 document.addEventListener('DOMContentLoaded', function () {
     (function () {
+        'use strict';
         const fieldname = 'Display Title Tag';
         const fieldElement = document.querySelector(`[name="${fieldname}"]`);
 
         if (fieldElement) {
             console.log(`Field "${fieldname}" found:`, fieldElement);
+        } else {
+            console.log(`Field "${fieldname}" not found`);
         }
     })();
 });
+
+// rewriting the function to a simple wait, and find keyword approach
+setTimeout(function(){
+    const keyword = "Display Title";
+    const pageText = document.body.textContent;
+    if (pageText.includes(keyword)) {
+      console.log(`Keyword "${keyword}" found!`);
+    } else {
+      console.log(`Keyword "${keyword}" not found!`);
+    }
+  }, 5000); // Wait 5 seconds before searching for the keyword

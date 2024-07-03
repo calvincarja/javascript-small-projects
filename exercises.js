@@ -124,7 +124,18 @@ setTimeout(function(){
     });
 }, 5000); // Wait 5 seconds before searching for the keyword
 
-
+// onyl find labels within a specific div
+setTimeout(function(){
+    const specificClass = document.querySelector('.required-fields field-group-html-element');
+        const labels = Array.from(specificClass.querySelectorAll('label')); // convert the nodelist to an array
+        labels.forEach(label => {
+            if (label.textContent.trim() === "") {
+                console.log(`Label "${label.textContent}" is empty`);
+            } else {
+                console.log(`Label "${label.textContent}" is not empty`);
+            }
+        });
+}, 5000); // Wait 5 seconds before searching for the keyword
 
 
   // i can build on this to eventually copy the values of the labels to the clipboard

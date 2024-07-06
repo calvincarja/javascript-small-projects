@@ -170,6 +170,9 @@ setTimeout(function(){
     if (specificClass) {
         const labels = Array.from(specificClass.querySelectorAll('label')); // convert the nodelist to an array
         const inputs = Array.from(specificClass.querySelectorAll('input'));
+        labels.forEach((labels, index) => {
+            console.log('label: ${labels.textContent}, input: ${inputs[index].textContent}');
+        });
     } else {
         console.log('Class not found');
     }

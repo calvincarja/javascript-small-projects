@@ -163,5 +163,17 @@ setTimeout(function(){
 }, 5000); // Wait 5 seconds before searching for the keyword
 
 
+// I want to find the input value for the label, through inspection, the value is set dynamically through javascript
+
+setTimeout(function(){
+    const specificClass = document.querySelector(`.col-sm-12`); // i found the exact class
+    if (specificClass) {
+        const labels = Array.from(specificClass.querySelectorAll('label')); // convert the nodelist to an array
+        const inputs = Array.from(specificClass.querySelectorAll('input'));
+    } else {
+        console.log('Class not found');
+    }
+}, 5000); // Wait 5 seconds before searching for the keyword
+
 
   // i can build on this to eventually copy the values of the labels to the clipboard

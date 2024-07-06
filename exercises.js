@@ -137,9 +137,9 @@ setTimeout(function(){
         });
 }, 5000); // Wait 5 seconds before searching for the keyword
 
-// nothing was loaded, lets made the code lighter
+// nothing was loaded, lets made the code lighter, and search for a specific class
 setTimeout(function(){
-    const specificClass = document.querySelector('.required-fields field-group-html-element');
+    const specificClass = document.querySelector('.col-sm-12'); // i found the exact class
     if (specificClass) {
         const labels = Array.from(specificClass.querySelectorAll('label')); // convert the nodelist to an array
         labels.forEach(label => console.log(label.textContent)); // loop through the array and log the text content of each label
@@ -148,6 +148,18 @@ setTimeout(function(){
     }
 }, 5000); // Wait 5 seconds before searching for the keyword
 
+
+// now that i can display each label, now i want to add a text to an empty field - array manipulation
+
+setTimeout(function(){
+    const specificClass = document.querySelector('.col-sm-12'); // i found the exact class
+    if (specificClass) {
+        const labels = Array.from(specificClass.querySelectorAll('label')); // convert the nodelist to an array
+        labels.forEach(label => console.log(label.textContent)); // loop through the array and log the text content of each label
+    } else {
+        console.log('Class not found');
+    }
+}, 5000); // Wait 5 seconds before searching for the keyword
 
 
 

@@ -188,12 +188,29 @@ setTimeout(function(){
         const firstinput = inputs[2];
         firstinput.value += 'Dream.Calvin'; // overiding the input present on the page
         labels.forEach((label, index) => {
-            console.log(`label: ${label.textContent}, input: ${inputs[index].value}`); // pay attention to how the 
+            console.log(`label: ${label.textContent}, input: ${inputs[index].value}`); // label is text attribute, while input is value attribute. read up
         });
     } else {
         console.log('Class not found');
     }
 }, 5000); // Wait 5 seconds before searching for the keyword
+
+// the finding of the .col-sm-12 class is not consistent, researched with AI, found an alternative approach
+
+function Attempttoexecute (retries, delay) { // recursive fucntion
+    const specificClass = document.querrySelector('.col-sm-12');
+    if (specificClass) {
+        const labels = Array.from(specificClass.querySelectorAll('label')); // convert the nodelist to an array
+        const inputs = Array.from(specificClass.querySelectorAll('input'));
+        const firstinput = inputs[2];
+        firstinput.value += 'Dream.Calvin'; // overiding the input present on the page
+    }
+    else if (retries > 0) {
+        console.log(`Retries remaining: ${retries}`);
+        setTimeout(() => Attempttoexecute(retries - 1, delay), delay); // this will restrart the fucntion
+    }
+
+}
 
 
   // i can build on this to eventually copy the values of the labels to the clipboard

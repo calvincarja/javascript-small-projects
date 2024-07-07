@@ -205,9 +205,12 @@ function Attempttoexecute (retries, delay) { // recursive fucntion
         const firstinput = inputs[2];
         firstinput.value += 'Dream.Calvin'; // overiding the input present on the page
     }
-    else if (retries > 0) {
+    else if (retries > 0) { // if specificClass returns null, execute this block
         console.log(`Retries remaining: ${retries}`);
         setTimeout(() => Attempttoexecute(retries - 1, delay), delay); // this will restrart the fucntion
+    }
+    else {
+        console.log(`class not found after ${retries}`) // use backticks to use tempalte literal
     }
 
 }

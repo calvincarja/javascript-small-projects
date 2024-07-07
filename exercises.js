@@ -215,5 +215,7 @@ function Attempttoexecute (retries, delay) { // recursive fucntion
 
 }
 
+Attempttoexecute (10, 5000); // call the function 
+
 
   // i can build on this to eventually copy the values of the labels to the clipboard

@@ -179,4 +179,21 @@ setTimeout(function(){
 }, 5000); // Wait 5 seconds before searching for the keyword
 
 
+// i want to edit an existing input value - lets manipulate the input array
+setTimeout(function(){
+    const specificClass = document.querySelector(`.col-sm-12`); // i found the exact class
+    if (specificClass) {
+        const labels = Array.from(specificClass.querySelectorAll('label')); // convert the nodelist to an array
+        const inputs = Array.from(specificClass.querySelectorAll('input'));
+        const firstinput = inputs[2];
+        firstinput.value += 'Dream.Calvin'; // overiding the input present on the page
+        labels.forEach((label, index) => {
+            console.log(`label: ${label.textContent}, input: ${inputs[index].value}`); // pay attention to how the 
+        });
+    } else {
+        console.log('Class not found');
+    }
+}, 5000); // Wait 5 seconds before searching for the keyword
+
+
   // i can build on this to eventually copy the values of the labels to the clipboard

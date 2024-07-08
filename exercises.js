@@ -198,16 +198,16 @@ setTimeout(function(){
 // the finding of the .col-sm-12 class is not consistent, researched with AI, found an alternative approach
 
 function Attempttoexecute (retries, delay) { // recursive fucntion
-    const specificClass = document.querrySelector('.col-sm-12');
+    const specificClass = document.querrySelector('.col-sm-12'); // the div that controls the module page designer 
     if (specificClass) {
         const labels = Array.from(specificClass.querySelectorAll('label')); // convert the nodelist to an array
         const inputs = Array.from(specificClass.querySelectorAll('input'));
         const firstinput = inputs[2];
-        firstinput.value += 'Dream.Calvin'; // overiding the input present on the page
+        firstinput.value += 'Dream.Calvin'; // overiding the input present on the page, will need to refresh the page to display
     }
     else if (retries > 0) { // if specificClass returns null, execute this block
         console.log(`Retries remaining: ${retries}`);
-        setTimeout(() => Attempttoexecute(retries - 1, delay), delay); // this will restrart the fucntion
+        setTimeout(() => Attempttoexecute(retries - 1, delay), delay); // this will restrart the function until the class is found
     }
     else {
         console.log(`class not found after ${retries}`) // use backticks to use tempalte literal

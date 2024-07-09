@@ -198,7 +198,7 @@ setTimeout(function(){
 // the finding of the .col-sm-12 class is not consistent, researched with AI, found an alternative approach
 
 function Attempttoexecute (retries, delay) { // recursive fucntion
-    const specificClass = document.querrySelector('.col-sm-12'); // the div that controls the module page designer 
+    const specificClass = document.querySelector('.col-sm-12'); // the div that controls the module page designer 
     if (specificClass) {
         const labels = Array.from(specificClass.querySelectorAll('label')); // convert the nodelist to an array
         const inputs = Array.from(specificClass.querySelectorAll('input'));
@@ -217,5 +217,27 @@ function Attempttoexecute (retries, delay) { // recursive fucntion
 
 Attempttoexecute (10, 5000); // call the function 
 
+
+// now i want to find the index place of the array item that contains mention of the specific field
+
+function Attempttoexecute (retries, delay) { // recursive fucntion
+    const specificClass = document.querySelector('.col-sm-12'); // the div that controls the module page designer 
+    if (specificClass) {
+        const labels = Array.from(specificClass.querySelectorAll('label')); // convert the nodelist to an array
+        const inputs = Array.from(specificClass.querySelectorAll('input'));
+        console.log(labels); // i need to see the strucuter of my labels array
+        const findarrayitem = labels.find(item => item.label.indexof('Title'));
+    }
+    else if (retries > 0) { // if specificClass returns null, execute this block
+        console.log(`Retries remaining: ${retries}`);
+        setTimeout(() => Attempttoexecute(retries - 1, delay), delay); // this will restrart the function until the class is found
+    }
+    else {
+        console.log(`class not found after ${retries}`) // use backticks to use tempalte literal
+    }
+
+}
+
+Attempttoexecute (10, 5000); // call the function 
 
   // i can build on this to eventually copy the values of the labels to the clipboard

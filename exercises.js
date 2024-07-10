@@ -226,7 +226,7 @@ function Attempttoexecute (retries, delay) { // recursive fucntion
         const labels = Array.from(specificClass.querySelectorAll('label')); // convert the nodelist to an array
         const inputs = Array.from(specificClass.querySelectorAll('input'));
         console.log(labels); // i need to see the strucuter of my labels array
-        const findarrayitem = labels.find(item => item.label.indexof('Title'));
+        const findarrayitem = labels.find(item => item.textContent.indexOf('Title');
     }
     else if (retries > 0) { // if specificClass returns null, execute this block
         console.log(`Retries remaining: ${retries}`);
@@ -238,6 +238,6 @@ function Attempttoexecute (retries, delay) { // recursive fucntion
 
 }
 
-Attempttoexecute (10, 5000); // call the function 
+Attempttoexecute (10, 10000); // call the function 
 
   // i can build on this to eventually copy the values of the labels to the clipboard

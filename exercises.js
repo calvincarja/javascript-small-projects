@@ -241,4 +241,18 @@ function Attempttoexecute (retries, delay) { // recursive fucntion
 
 Attempttoexecute (10, 10000); // call the function 
 
+
+// lite version of my code, no check for div class
+
+const labels = Array.from(document.querySelectorAll('label')); // convert the nodelist to an array
+const inputs = Array.from(document.querySelectorAll('input'));
+const findarrayitem = labels.find(item => item.textContent.indexOf('Title');
+if (findarrayitem) {
+    console.log('found title');
+}
+else {
+    console.log('did not find title');
+}
+
+
   // i can build on this to eventually copy the values of the labels to the clipboard

@@ -255,4 +255,10 @@ else {
 }
 
 
+// the correct code to find the index of the title label
+const labels = Array.from(document.querySelectorAll('label')); // convert the nodelist to an array
+labels.forEach(label => console.log('|' + label.textContent + '|')); // this displays the label, in a readble format
+const index = labels.findIndex(label => label.textContent.trim().includes("Title")); // find index to find the position, trim to remove spaces, incldues find the mention of title, 
+
+
   // i can build on this to eventually copy the values of the labels to the clipboard

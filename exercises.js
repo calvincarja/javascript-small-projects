@@ -227,6 +227,7 @@ function Attempttoexecute (retries, delay) { // recursive fucntion
         const inputs = Array.from(specificClass.querySelectorAll('input'));
         console.log(labels); // i need to see the strucuter of my labels array
         const findarrayitem = labels.find(item => item.textContent.indexOf('Title');
+        console.log(findarrayitem);
     }
     else if (retries > 0) { // if specificClass returns null, execute this block
         console.log(`Retries remaining: ${retries}`);

@@ -308,25 +308,6 @@ function check4class(attempt = 1) {
     }
 }
 
-// AI example - reference
-
-function check4class(attempt = 1) {
-    const specificClass = document.querySelector(".col-sm-12");
-    if (!specificClass) {
-        if (attempt < 4) { // Check if it has been tried less than 4 times
-            console.log(`Class not found, will re-try in 10 seconds. Attempt ${attempt}`);
-            setTimeout(() => check4class(attempt + 1), 10000); // Increment attempt count
-        } else {
-            console.log("Class not found after 4 attempts.");
-        }
-    } else {
-        const labels = Array.from(document.querySelectorAll('label')); // Convert the NodeList to an array
-        const inputs = Array.from(document.querySelectorAll('input'));
-        const index = labels.findIndex(label => label.textContent.trim().includes("Title"));
-        // Assuming you want to do something with 'index' here
-        console.log("Class found.");
-    }
-}
 
 
   // i can build on this to eventually copy the values of the labels to the clipboard

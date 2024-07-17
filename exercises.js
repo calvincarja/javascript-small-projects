@@ -256,9 +256,34 @@ else {
 
 
 // the correct code to find the index of the title label
+
 const labels = Array.from(document.querySelectorAll('label')); // convert the nodelist to an array
 labels.forEach(label => console.log('|' + label.textContent + '|')); // this displays the label, in a readble format
 const index = labels.findIndex(label => label.textContent.trim().includes("Title")); // find index to find the position, trim to remove spaces, incldues find the mention of title, 
+
+
+// now lets use the value of index for our second array
+const labels = Array.from(document.querySelectorAll('label')); // convert the nodelist to an array
+const inputs = Array.from(document.querySelectorAll('input'));
+const index = labels.findIndex(label => label.textContent.trim().includes("Title")); // find index to find the position, trim to remove spaces, incldues find the mention of title, 
+console.log(inputs[index]);
+
+
+// rewrite the same code, but within a recurisive function
+
+
+function check4class() {
+    const specificClass = document.querySelector(".col-sm-12"); // use if statement to check if value is null or not
+    if (!specificClass) {
+        console.log("class not found, will re-try in 10 seconds");
+        setTimeout(check4class, 10000);
+    }
+    else {
+        const labels = Array.from(document.querySelectorAll('label')); // convert the nodelist to an array
+        const inputs = Array.from(document.querySelectorAll('input'));
+        const index = labels.findIndex(label => label.textContent.trim().includes("Title"));
+    }
+}
 
 
   // i can build on this to eventually copy the values of the labels to the clipboard

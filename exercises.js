@@ -309,6 +309,7 @@ function check4class(attempt = 1) {
 }
 
 // due to my refresh logic, i need to store the script. taper monkey is not working, thus i will use the bookmark route
+// no comments 
 
 (function() {
     function check4class(attempt = 1) {
@@ -330,4 +331,10 @@ function check4class(attempt = 1) {
     check4class();
 })();
 
+// minified version
+(function(){function check4class(attempt=1){const specificClass=document.querySelector(".col-sm-12");if(!specificClass){if(attempt<4){console.log("class not found, will re-try in 10 seconds");setTimeout(()=>check4class(attempt+1),10000)}else{console.log("class was not able to be found")}}else{const labels=Array.from(document.querySelectorAll('label'));const inputs=Array.from(document.querySelectorAll('input'));const index=labels.findIndex(label=>label.textContent.trim().includes("Title"));console.log(index)}}check4class()})();
+
+// encoded vesrion
+
+javascript:(function(){function%20check4class(attempt=1){const%20specificClass=document.querySelector(%22.col-sm-12%22);if(!specificClass){if(attempt<4){console.log(%22class%20not%20found,%20will%20re-try%20in%2010%20seconds%22);setTimeout(()=>check4class(attempt+1),10000)}else{console.log(%22class%20was%20not%20able%20to%20be%20found%22)}}else{const%20labels=Array.from(document.querySelectorAll(%27label%27));const%20inputs=Array.from(document.querySelectorAll(%27input%27));const%20index=labels.findIndex(label=>label.textContent.trim().includes(%22Title%22));console.log(index)}}check4class()})();
   // i can build on this to eventually copy the values of the labels to the clipboard

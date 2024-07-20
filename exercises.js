@@ -422,4 +422,46 @@ function check4class() {
 
 // Initialize the function
 check4class();
+
+// now check if localstroage is avalible, if not, use in-memory
+// checking if localstorage is avalible
+
+function testlocalstorage {
+    try {
+        let storagecheck = "test local storage";
+        localStorage.setItem(storagecheck, storagecheck);
+        localStorage.removeItem(storagecheck);
+        return true;
+    }
+    catch (e) {
+        return false;
+    }
+}
+
+function check4class {
+    // check if lcoal storage is avalible
+    const checklocalstorage = testlocalstorage;
+    // confirm if attempt is needed to store in local storage, if not, intialize to in-memory as its recurisve
+    let attempt, refresh;
+
+    if (checklocalstorage) {
+        console.log('local storage avalible, will store attempt & refresh');
+        attempt = parseInt(localStorage.getItem('attempt') || '1');
+        refresh = parseInt(localStorage.getItem('refresh') || '0');
+    }
+    else {
+        console.log('local storage not avalible, will use in-memory')
+        attempt = 1;
+        refresh = 0;
+    }
+
+    // now check for class code
+    const specificClass = document.querySelector(".col-sm-12");
+    if (!specificClass) {
+
+    }
+}
+
+
+
 // i can build on this to eventually copy the values of the labels to the clipboard

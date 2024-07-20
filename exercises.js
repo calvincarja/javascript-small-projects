@@ -270,7 +270,7 @@ console.log(inputs[index]);
 
 
 // rewrite the same code, but within a recurisive function
-
+// Jul 17, 2024
 
 function check4class() {
     const specificClass = document.querySelector(".col-sm-12"); // use if statement to check if value is null or not
@@ -308,6 +308,26 @@ function check4class(attempt = 1) {
     }
 }
 
+// due to my refresh logic, i need to store the script. taper monkey is not working, thus i will use the bookmark route
 
+(function() {
+    function check4class(attempt = 1) {
+        const specificClass = document.querySelector(".col-sm-12");
+        if (!specificClass) {
+            if (attempt < 4) {
+                console.log("class not found, will re-try in 10 seconds");
+                setTimeout(() => check4class(attempt + 1), 10000);
+            } else {
+                console.log("class was not able to be found");
+            }
+        } else {
+            const labels = Array.from(document.querySelectorAll('label'));
+            const inputs = Array.from(document.querySelectorAll('input'));
+            const index = labels.findIndex(label => label.textContent.trim().includes("Title"));
+            console.log(index);
+        }
+    }
+    check4class();
+})();
 
   // i can build on this to eventually copy the values of the labels to the clipboard

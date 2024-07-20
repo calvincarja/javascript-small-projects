@@ -337,4 +337,89 @@ function check4class(attempt = 1) {
 // encoded vesrion
 
 javascript:(function(){function%20check4class(attempt=1){const%20specificClass=document.querySelector(%22.col-sm-12%22);if(!specificClass){if(attempt<4){console.log(%22class%20not%20found,%20will%20re-try%20in%2010%20seconds%22);setTimeout(()=>check4class(attempt+1),10000)}else{console.log(%22class%20was%20not%20able%20to%20be%20found%22)}}else{const%20labels=Array.from(document.querySelectorAll(%27label%27));const%20inputs=Array.from(document.querySelectorAll(%27input%27));const%20index=labels.findIndex(label=>label.textContent.trim().includes(%22Title%22));console.log(index)}}check4class()})();
-  // i can build on this to eventually copy the values of the labels to the clipboard
+  
+// now i want to include a page refresh.
+
+// mini break - but keep the following in mind: do i want to refresh && settimeout ? what will occur with attempt, i need it to restart so i can have the timeout run again. 
+// esentially i want the logic, run settimout 3 times, if it failes, refresh the page, 
+
+function check4class(attempt = 1, pagerefresh = 1) {
+    const specificClass = document.querySelector(".col-sm-12"); // use if statement to check if value is null or not
+    if (!specificClass) {
+        if (attempt < 4) {
+            console.log("class not found, will re-try in 10 seconds");
+        setTimeout(() => check4class(attempt + 1), 10000);    
+        }
+        else if (pagerefresh < 4) {
+            console.log("set-timeout ran out, will now begin refreshing the page")
+            location.reload(true);
+        }
+        else {
+            console.log("class was not able to be found");
+        }
+    }
+    else {
+        const labels = Array.from(document.querySelectorAll('label')); // convert the nodelist to an array
+        const inputs = Array.from(document.querySelectorAll('input'));
+        const index = labels.findIndex(label => label.textContent.trim().includes("Title"));
+        console.log(index);
+    }
+}
+
+// code version that includes localstorage, two index varibles
+
+function check4class() {
+    // Retrieve the attempt and refresh values from local storage or initialize them
+    let attempt = parseInt(localStorage.getItem('attempt') || '1');
+    let refresh = parseInt(localStorage.getItem('refresh') || '0');
+
+    // Attempt to find the specific class
+    const specificClass = document.querySelector(".col-sm-12");
+
+    if (!specificClass) {
+        if (attempt <= 4) { // Run the setTimeout loop 4 times
+            console.log(`class not found, will re-try in 10 seconds (attempt ${attempt}/4)`);
+
+            // Store the current attempt count in local storage
+            localStorage.setItem('attempt', attempt);
+
+            // Set a timeout to re-check the class after 10 seconds
+            setTimeout(() => {
+                localStorage.setItem('attempt', attempt + 1);
+                check4class();
+            }, 10000);
+        } else if (refresh < 3) { // Limit to 3 page refreshes
+            console.log("Max attempts reached, refreshing the page");
+
+            // Increment the refresh count and store it in local storage
+            localStorage.setItem('refresh', refresh + 1);
+
+            // Reset the attempt counter and store it in local storage
+            localStorage.setItem('attempt', '1');
+
+            // Perform a server refresh
+            location.reload(true); // true forces a server refresh
+        } else {
+            console.log("class was not able to be found after maximum refreshes");
+
+            // Clear the attempt and refresh counters from local storage after max refreshes
+            localStorage.removeItem('attempt');
+            localStorage.removeItem('refresh');
+        }
+    } else {
+        console.log("class found");
+
+        // Clear the attempt and refresh counters from local storage upon success
+        localStorage.removeItem('attempt');
+        localStorage.removeItem('refresh');
+        
+        const labels = Array.from(document.querySelectorAll('label'));
+        const inputs = Array.from(document.querySelectorAll('input'));
+        const index = labels.findIndex(label => label.textContent.trim().includes("Title"));
+        console.log(index);
+    }
+}
+
+// Initialize the function
+check4class();
+// i can build on this to eventually copy the values of the labels to the clipboard

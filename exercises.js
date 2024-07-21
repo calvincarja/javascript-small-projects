@@ -438,29 +438,48 @@ function testlocalstorage {
     }
 }
 
-function check4class {
+function check4class(attempt = 1) {
     // check if lcoal storage is avalible
     const checklocalstorage = testlocalstorage;
     // confirm if attempt is needed to store in local storage, if not, intialize to in-memory as its recurisve
-    let attempt, refresh;
+    let refresh;
 
     if (checklocalstorage) {
-        console.log('local storage avalible, will store attempt & refresh');
-        attempt = parseInt(localStorage.getItem('attempt') || '1');
+        console.log('local storage avalible, will store refresh');
         refresh = parseInt(localStorage.getItem('refresh') || '0');
-    }
-    else {
-        console.log('local storage not avalible, will use in-memory')
-        attempt = 1;
-        refresh = 0;
+        const specificClass = document.querySelector(".col-sm-12");
+        if (!specificClass) {
+            if (attempt <= 4) {
+                console.log(`class not found, will re-try in 10 seconds (attempt ${attempt}/4)`);
+                setTimeout(() => {
+                    check4class(attempt + 1);
+                }, 10000);
+            }
+            else if (refresh < 3) {
+                console.log("Max attempts reached, refreshing the page");
+                localStorage.setItem('refresh', refresh + 1);
+                location.reload(true); // true forces a server refresh
+    
+            }
+            else {
+                console.log("after maxium amount of refreshes, class was not found.")
+                localStorage.removeItem('refresh');
+            }
+        }
+        else {
+            console.log("class found");
+
+            // Clear the attempt and refresh counters from local storage upon success
+            localStorage.removeItem('refresh');
+            
+            const labels = Array.from(document.querySelectorAll('label'));
+            const inputs = Array.from(document.querySelectorAll('input'));
+            const index = labels.findIndex(label => label.textContent.trim().includes("Title"));
+            console.log(index);
+        }
     }
 
-    // now check for class code
-    const specificClass = document.querySelector(".col-sm-12");
-    if (!specificClass) {
 
-    }
-}
 
 
 

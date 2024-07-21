@@ -478,6 +478,29 @@ function check4class(attempt = 1) {
             console.log(index);
         }
     }
+    else {
+        console.log("local storage not avalible, will need to manually refresh after set timeout is complete");
+        refresh = 0;
+        if (!specificClass) {
+            if (attempt <= 4) {
+                console.log(`class not found, will re-try in 10 seconds (attempt ${attempt}/4)`);
+                setTimeout(() => {
+                    check4class(attempt + 1);
+                }, 10000);
+            }
+            else {
+                console.log("class was not found. please refresh the page manually")
+            }
+        }
+        else {
+            console.log("class found");
+            const labels = Array.from(document.querySelectorAll('label'));
+            const inputs = Array.from(document.querySelectorAll('input'));
+            const index = labels.findIndex(label => label.textContent.trim().includes("Title"));
+            console.log(index);
+        }
+
+    }
 
 
 

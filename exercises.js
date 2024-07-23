@@ -520,6 +520,21 @@ function check4class(attempt = 1) {
 
 // 7-21-24 i need to use a mutant observer, will keep the code above as reference
 
+// a mutation observer is a list of changes that occured in the dom. the observer is like a watch dog, mutation list is what changed, the callback function is when something changes. 
+
+// major breakthrough, by interacting with the labels, i can force the class to load to the dom. the folowing code will try to mimic that
+
+function simulateinteraction () {
+    // locate the parent element where the dynamic code will be loaded
+    const targetNode = document.querySelector(".form-group row");
+    if (!targetNode) {
+        console.error('target not found');
+        return; // if element not found, log an error message, and exit the function
+    }
+    // configuration for the observer (watch dog)
+    const config = {childList: true, subtree: true};
+}
+
 
 
 

@@ -533,8 +533,30 @@ function simulateinteraction () {
     }
     // configuration for the observer (watch dog)
     const config = {childList: true, subtree: true};
-}
 
+    // callback function is what is deployed when a change in the target node occurs, reported by the observer
+    const callback = function(mutationList, observer) {
+        for (const mutant of mutationList) {
+            if (mutant.type === 'childList') {
+                // check for specific class
+                const specificClass = document.querySelector('.col-sm-12');
+                if (specificClass) {
+                    console.log('Element found:', specificClass);
+                    // we will add DOM manipulation here
+                    // lets stop the observer once element is found
+                    observer.disconnect();
+                    return;
+                }
+            }
+        }
+    }
+};
+
+// Create a MutationObserver instance
+const observer = new MutationObserver(callback);
+
+// start observing the target node with the specified configuration
+observer.observe(targetNode, config); 
 
 
 

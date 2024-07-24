@@ -595,8 +595,7 @@ if (iframe.contentDocument.readyState === 'complete') {
 function getindex() {
     const specificClass = document.querySelector(".col-sm-12"); // use if statement to check if value is null or not
     if (!specificClass) {
-        console.log("class not found, will re-try in 10 seconds");
-        setTimeout(check4class, 10000);
+        console.log("class not found");
     }
     else {
         const labels = Array.from(document.querySelectorAll('label')); // convert the nodelist to an array
@@ -617,5 +616,49 @@ function getindex() {
 }
 
 getindex();
+
+// add an check for index value
+
+function getindex() {
+    const specificClass = document.querySelector(".col-sm-12"); // use if statement to check if value is null or not
+    if (!specificClass) {
+        console.log("class not found");
+    }
+    else {
+        const labels = Array.from(document.querySelectorAll('label')); // convert the nodelist to an array
+        const inputs = Array.from(document.querySelectorAll('input'));
+        const index = labels.findIndex(label => label.textContent.trim().includes("Title"));
+        if (index != -1) {
+            const value = inputs[index]._value;
+            // i want to extract the value of the index place, the property in charge is called '_value', use dot notation
+            console.log(index, value);
+            // copy value of index to clipboard
+            navigator.clipboard.writeText(value).then(function() {
+                console.log('value has been added to the clipboard');
+            }).catch(function(err) {
+                console.log('could not copy text ', err);
+            });
+        }
+        else {
+            console.log("index returned null, exiting function");
+        }
+    }
+}
+
+getindex();
+
+// navigoator.clipboard is only avalible for secure websites, so i am using the textarea workaround
+// below is an exmaple of textarea
+
+const textarea = document.createElement('textarea'); 
+ 
+textarea.id = 'my text area';textarea.rows = 4;
+ 
+textarea.cols = 50;
+ 
+textarea.value = 'calvin'; document.body.appendChild(textarea);
+ 
+console.log('text area added to page');
+
 
 // advance scnarios: toggle different copied values, create button to copy the entire values within the section

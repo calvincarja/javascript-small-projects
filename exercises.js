@@ -602,10 +602,13 @@ function getindex() {
         const labels = Array.from(document.querySelectorAll('label')); // convert the nodelist to an array
         const inputs = Array.from(document.querySelectorAll('input'));
         const index = labels.findIndex(label => label.textContent.trim().includes("Title"));
-        console.log()
+        console.log(index, inputs[index]);
+        // copy value of index to clipboard
+        // open new tab and specifiy the url
+        // manually paste value to field 
     }
 }
 
 getindex();
 
-// i can build on this to eventually copy the values of the labels to the clipboard
+// advance scnarios: toggle different copied values, create button to copy the entire values within the section

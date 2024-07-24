@@ -590,4 +590,22 @@ if (iframe.contentDocument.readyState === 'complete') {
 }
 
 
+// the iframe route was uncessful, so i am just going to focus on the DOM manuipulation, will ask David for assitance later
+
+function getindex() {
+    const specificClass = document.querySelector(".col-sm-12"); // use if statement to check if value is null or not
+    if (!specificClass) {
+        console.log("class not found, will re-try in 10 seconds");
+        setTimeout(check4class, 10000);
+    }
+    else {
+        const labels = Array.from(document.querySelectorAll('label')); // convert the nodelist to an array
+        const inputs = Array.from(document.querySelectorAll('input'));
+        const index = labels.findIndex(label => label.textContent.trim().includes("Title"));
+        console.log()
+    }
+}
+
+getindex();
+
 // i can build on this to eventually copy the values of the labels to the clipboard

@@ -526,14 +526,14 @@ function check4class(attempt = 1) {
 
 function simulateinteraction () {
     // locate the parent element where the dynamic code will be loaded
-    const targetNode = document.querySelector(".form-group row");
+    const targetNode = document.querySelector(".form-group.row");
     if (!targetNode) {
         console.error('target not found');
         return; // if element not found, log an error message, and exit the function
     }
     // configuration for the observer (watch dog)
     const config = {childList: true, subtree: true};
-
+ 
     // callback function is what is deployed when a change in the target node occurs, reported by the observer
     const callback = function(mutationList, observer) {
         for (const mutant of mutationList) {
@@ -549,14 +549,34 @@ function simulateinteraction () {
                 }
             }
         }
-    }
-};
+    };
 
-// Create a MutationObserver instance
-const observer = new MutationObserver(callback);
+    // Create a MutationObserver instance
+    const observer = new MutationObserver(callback);
+ 
+    // start observing the target node with the specified configuration
+    observer.observe(targetNode, config);
+}
+ 
+// Call the function to start the observation
+simulateinteraction();
 
-// start observing the target node with the specified configuration
-observer.observe(targetNode, config); 
+
+// lets try loading the class from the iframe
+
+//first check - load the iframe
+
+// the code below only works if the event handler occurs before the iframe has completed runnign - timing is an issue here
+
+const iframe = document.getElementById('//staging-aws-drupal.oceaniacruises.com/page-designer/content.html');
+
+//load an event handler: loaded
+
+iframe.onload = function() {
+    console.log('Iframe has loaded');
+}
+
+// below is a snippet to check if the iframe has loaded, regardless when it did
 
 
 

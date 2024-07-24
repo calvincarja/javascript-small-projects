@@ -602,9 +602,15 @@ function getindex() {
         const labels = Array.from(document.querySelectorAll('label')); // convert the nodelist to an array
         const inputs = Array.from(document.querySelectorAll('input'));
         const index = labels.findIndex(label => label.textContent.trim().includes("Title"));
+        const value = inputs[index]._value;
         // i want to extract the value of the index place, the property in charge is called '_value', use dot notation
-        console.log(index, inputs[index]._value);
+        console.log(index, value);
         // copy value of index to clipboard
+        navigator.clipboard.writeText(value).then(function() {
+            console.log('value has been added to the clipboard');
+        }).catch(function(err) {
+            console.log('could not copy text ', err);
+        });
         // open new tab and specifiy the url
         // manually paste value to field 
     }

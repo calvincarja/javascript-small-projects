@@ -602,7 +602,8 @@ function getindex() {
         const labels = Array.from(document.querySelectorAll('label')); // convert the nodelist to an array
         const inputs = Array.from(document.querySelectorAll('input'));
         const index = labels.findIndex(label => label.textContent.trim().includes("Title"));
-        console.log(index, inputs[index]);
+        // i want to extract the value of the index place, the property in charge is called '_value', use dot notation
+        console.log(index, inputs[index]._value);
         // copy value of index to clipboard
         // open new tab and specifiy the url
         // manually paste value to field 

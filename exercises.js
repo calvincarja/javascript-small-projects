@@ -577,7 +577,17 @@ iframe.onload = function() {
 }
 
 // below is a snippet to check if the iframe has loaded, regardless when it did
+const iframe = document.getElementById('iframe');
 
+// Check if the iframe's content is already loaded
+if (iframe.contentDocument.readyState === 'complete') {
+    console.log('Iframe has already loaded');
+} else {
+    // Set the onload event listener for future loads
+    iframe.onload = function() {
+        console.log('Iframe has loaded');
+    };
+}
 
 
 // i can build on this to eventually copy the values of the labels to the clipboard

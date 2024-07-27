@@ -696,5 +696,34 @@ function addvaluetolocal () {
 
 addvaluetolocal();
 
+// i was able to succesffully store an item to my local storage within drupal. 
+
+// now lets reporpuse the same code, but just to find the exact index, and replace it with my local storage item
+
+// code for once the value was stored to my local storage
+
+function extractlocalvalue () {
+    const specificClass = document.querySelector('.col-sm-12');
+    const search_label = 'Title'; 
+    if (specificClass) {
+        const labels = Array.from(document.querySelectorAll('label'));
+        const inputs = Array.from(document.querySelectorAll('input'));
+        const index = labels.findIndex(label => label.textContent.trim().includes(search_label)); // this will find the exact position for my input
+        const localitem = localStorage.getItem('inputvalue');
+        if (inputs[index]) { // check if the position exists within the array
+            inputs[index]._value = localitem;
+            console.log(inputs[index]._value);
+        }
+        else {
+            console.log('the input field was not found. exit and investigate');
+        }
+
+    }
+    else {
+        console.log('class was not found, exist an try again');
+    }
+}
+
+extractlocalvalue();
 
 // advance scnarios: toggle different copied values, create button to copy the entire values within the section

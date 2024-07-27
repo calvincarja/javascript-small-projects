@@ -651,18 +651,50 @@ getindex();
 
 // assume local storaqge is avalible
 
-function addvaluetolocal () {
-    const specificClass = document.querySelector('.col-sm-12');
-    const search_label = 'Title'; 
-    if (specificClass) {
-        const labels = Array.from(document.querySelectorAll('label'));
-        const inputs = Array.from(document.querySelectorAll('input'));
-        const index = labels.findIndex(label => label.textContent.trim().includes(search_label));
+function testlocalstorage {
+    try {
+        let storagecheck = "test local storage";
+        localStorage.setItem(storagecheck, storagecheck);
+        localStorage.removeItem(storagecheck);
+        return true;
     }
-
+    catch (e) {
+        return false;
+    }
 }
 
+function addvaluetolocal () {
+    const checklocalstorage = testlocalstorage;
+    const specificClass = document.querySelector('.col-sm-12');
+    const search_label = 'Title'; 
+    
+    if (checklocalstorage) {
+        console.log('local storage avalible, will proceed to find index');    
+        if (specificClass) {
+            const labels = Array.from(document.querySelectorAll('label'));
+            const inputs = Array.from(document.querySelectorAll('input'));
+            const index = labels.findIndex(label => label.textContent.trim().includes(search_label));
+            const use_index_for_input = inputs[index]._value; // this uses the exact position of the index, then it uses the properity _value to store the actual input value
+            if (typeof use_index_for_input === 'string') {
+                localStorage.setItem(use_index_for_input);
+                const storedValue = localStorage.getItem(use_index_for_input);
+                console.log(storedValue);
+            }
+            else {
+                console.log('the value from the index position was not a string. exit code and investigate');
+            }
+        }
+        else {
+            console.log('class not found, code will exit. please try again');
+        }
+    }
+    else {
+        console.log('local storage not avalible, investigate and try again');
+    }
+    
+}
 
+addvaluetolocal();
 
 
 // advance scnarios: toggle different copied values, create button to copy the entire values within the section

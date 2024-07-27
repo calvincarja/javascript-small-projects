@@ -647,18 +647,22 @@ function getindex() {
 
 getindex();
 
-// navigoator.clipboard is only avalible for secure websites, so i am using the textarea workaround
-// below is an exmaple of textarea
+// considering clipboard object is not avalible, i will try using the local storage
 
-const textarea = document.createElement('textarea'); 
- 
-textarea.id = 'my text area';textarea.rows = 4;
- 
-textarea.cols = 50;
- 
-textarea.value = 'calvin'; document.body.appendChild(textarea);
- 
-console.log('text area added to page');
+// assume local storaqge is avalible
+
+function addvaluetolocal () {
+    const specificClass = document.querySelector('.col-sm-12');
+    const search_label = 'Title'; 
+    if (specificClass) {
+        const labels = Array.from(document.querySelectorAll('label'));
+        const inputs = Array.from(document.querySelectorAll('input'));
+        const index = labels.findIndex(label => label.textContent.trim().includes(search_label));
+    }
+
+}
+
+
 
 
 // advance scnarios: toggle different copied values, create button to copy the entire values within the section

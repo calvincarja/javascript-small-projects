@@ -651,7 +651,7 @@ getindex();
 
 // assume local storaqge is avalible
 
-function testlocalstorage {
+function testlocalstorage () {
     try {
         let storagecheck = "test local storage";
         localStorage.setItem(storagecheck, storagecheck);
@@ -676,8 +676,8 @@ function addvaluetolocal () {
             const index = labels.findIndex(label => label.textContent.trim().includes(search_label));
             const use_index_for_input = inputs[index]._value; // this uses the exact position of the index, then it uses the properity _value to store the actual input value
             if (typeof use_index_for_input === 'string') {
-                localStorage.setItem(use_index_for_input);
-                const storedValue = localStorage.getItem(use_index_for_input);
+                localStorage.setItem('inputvalue', use_index_for_input); // key : value, use key in get item
+                const storedValue = localStorage.getItem('inputvalue');
                 console.log(storedValue);
             }
             else {

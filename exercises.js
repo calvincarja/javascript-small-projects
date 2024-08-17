@@ -751,16 +751,18 @@ function addvaluestolocal () {
             const labels = Array.from(document.querySelectorAll('label'));
             const inputs = Array.from(document.querySelectorAll('input'));
             // const index = search_label_array.map(label => ({label, index: labels.indexOf(label)})); // index is now an array of objects
+            
             for (let i = 0; i < search_label_array.length; i++) {
                 const index = labels.findIndex(label => label.textContent.trim().includes(search_label_array[i]));
-                const use_index_for_input = inputs[index].value;
-                if (typeof use_index_for_input === 'string') {
+                
+                if (index != -1) { // -1 means the index was not found
+                    const use_index_for_input = inputs[index].value; // it will not always be a string
                     localStorage.setItem(`inputvalue_${search_label_array[i]}`, use_index_for_input); // key : value, use key in get item
                     const storedValue = localStorage.getItem(`inputvalue_${search_label_array[i]}`);
                     console.log(storedValue);
                 }
                 else {
-                    console.log('the value from the index position was not a string. exit code and investigate');
+                    console.log(`label ${search_label_array[i]} not found`);
                     break;
                 }
             }

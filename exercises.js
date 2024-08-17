@@ -649,6 +649,8 @@ getindex();
 
 // considering clipboard object is not avalible, i will try using the local storage
 
+// good code below
+
 // assume local storaqge is avalible
 
 function testlocalstorage () {
@@ -737,7 +739,7 @@ function extractlocalvalue () {
         const localitem = localStorage.getItem('inputvalue'); // i confirmed its not null with my copy to local function
         console.log(inputs[index].value); // this test worked, it showed me the value stored
         inputs[index].value = localitem; // re-running the console.log(inputs[index]._value) shows the updated value, but it does not update the code
-
+        console.log(inputs[index].value);
     }
     else {
         console.log('class was not found, exist an try again');
@@ -748,5 +750,5 @@ extractlocalvalue();
 
 // the above code worked
 
+// now lets create an array of copied items - update the code below
 
-// advance scnarios: toggle different copied values, create button to copy the entire values within the section

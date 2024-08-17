@@ -704,30 +704,6 @@ addvaluetolocal();
 
 // code for once the value was stored to my local storage
 
-function extractlocalvalue () {
-    const specificClass = document.querySelector('.col-sm-12');
-    const search_label = 'Title'; 
-    if (specificClass) {
-        const labels = Array.from(document.querySelectorAll('label'));
-        const inputs = Array.from(document.querySelectorAll('input'));
-        const index = labels.findIndex(label => label.textContent.trim().includes(search_label)); // this will find the exact position for my input
-        const localitem = localStorage.getItem('inputvalue'); // i confirmed its not null with my copy to local function
-        if (inputs[index]) { // check if the position exists within the array
-            inputs[index].value = localitem;
-            console.log(inputs[index].value);
-        }
-        else {
-            console.log('the input field was not found. exit and investigate');
-        }
-
-    }
-    else {
-        console.log('class was not found, exist an try again');
-    }
-}
-
-extractlocalvalue();
-
 // debug version - find the title field and print out the input value
 function extractlocalvalue () {
     const specificClass = document.querySelector('.col-sm-12');
@@ -752,3 +728,47 @@ extractlocalvalue();
 
 // now lets create an array of copied items - update the code below
 
+function testlocalstorage () {
+    try {
+        let storagecheck = "test local storage";
+        localStorage.setItem(storagecheck, storagecheck);
+        localStorage.removeItem(storagecheck);
+        return true;
+    }
+    catch (e) {
+        return false;
+    }
+}
+
+function addvaluetolocal () {
+    const checklocalstorage = testlocalstorage;
+    const specificClass = document.querySelector('.col-sm-12');
+    const search_label = ['Title', 'Quotes']; 
+    
+    if (checklocalstorage) {
+        console.log('local storage avalible, will proceed to find index');    
+        if (specificClass) {
+            const labels = Array.from(document.querySelectorAll('label'));
+            const inputs = Array.from(document.querySelectorAll('input'));
+            const index = search_label.map(label => ({label, index: labels.indexOf(label)}));
+            const use_index_for_input = inputs[index].value; // this uses the exact position of the index, then it uses the properity _value to store the actual input value
+            if (typeof use_index_for_input === 'string') {
+                localStorage.setItem('inputvalue', use_index_for_input); // key : value, use key in get item
+                const storedValue = localStorage.getItem('inputvalue');
+                console.log(storedValue);
+            }
+            else {
+                console.log('the value from the index position was not a string. exit code and investigate');
+            }
+        }
+        else {
+            console.log('class not found, code will exit. please try again');
+        }
+    }
+    else {
+        console.log('local storage not avalible, investigate and try again');
+    }
+    
+}
+
+addvaluetolocal();

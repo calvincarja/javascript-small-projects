@@ -740,26 +740,31 @@ function testlocalstorage () {
     }
 }
 
-function addvaluetolocal () {
+function addvaluestolocal () {
     const checklocalstorage = testlocalstorage;
     const specificClass = document.querySelector('.col-sm-12');
-    const search_label = ['Title', 'Quotes']; 
+    const search_label_array = ['Title', 'Quotes']; 
     
     if (checklocalstorage) {
         console.log('local storage avalible, will proceed to find index');    
         if (specificClass) {
             const labels = Array.from(document.querySelectorAll('label'));
             const inputs = Array.from(document.querySelectorAll('input'));
-            const index = search_label.map(label => ({label, index: labels.indexOf(label)}));
-            const use_index_for_input = inputs[index].value; // this uses the exact position of the index, then it uses the properity _value to store the actual input value
-            if (typeof use_index_for_input === 'string') {
-                localStorage.setItem('inputvalue', use_index_for_input); // key : value, use key in get item
-                const storedValue = localStorage.getItem('inputvalue');
-                console.log(storedValue);
+            // const index = search_label_array.map(label => ({label, index: labels.indexOf(label)})); // index is now an array of objects
+            for (let i = 0; i < search_label_array.length; i++) {
+                const index = labels.findIndex(label => label.textContent.trim().includes(search_label_array[i]));
+                const use_index_for_input = inputs[index].value;
+                if (typeof use_index_for_input === 'string') {
+                    localStorage.setItem(`inputvalue_${search_label_array[i]}`, use_index_for_input); // key : value, use key in get item
+                    const storedValue = localStorage.getItem(`inputvalue_${search_label_array[i]}`);
+                    console.log(storedValue);
+                }
+                else {
+                    console.log('the value from the index position was not a string. exit code and investigate');
+                    break;
+                }
             }
-            else {
-                console.log('the value from the index position was not a string. exit code and investigate');
-            }
+             // this uses the exact position of the index, then it uses the properity _value to store the actual input value
         }
         else {
             console.log('class not found, code will exit. please try again');
@@ -771,4 +776,4 @@ function addvaluetolocal () {
     
 }
 
-addvaluetolocal();
+addvaluestolocal();

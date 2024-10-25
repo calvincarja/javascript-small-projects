@@ -1,5 +1,8 @@
+// provides the entire content of the page
+
 const https = require('https');
 
+/*
 // making a request to a server, ordering the book online
 https.get('https://qa1-aws.oceaniacruises.com/request-brochure', (response) => {
     // prepare to receive data, prepare to receive the book, making space on the shelf
@@ -15,6 +18,15 @@ https.get('https://qa1-aws.oceaniacruises.com/request-brochure', (response) => {
         console.log(data);
     });
 
+}).on('error', (error) => {
+    console.error(error);
+});
+
+*/
+
+// only receive the header
+https.get('https://qa1-aws.oceaniacruises.com/request-brochure', (response) => {
+    console.log(response.headers);
 }).on('error', (error) => {
     console.error(error);
 });

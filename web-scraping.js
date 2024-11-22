@@ -1,5 +1,6 @@
 // provides the entire content of the page
 
+const puppeteer = require('puppeteer')
 const https = require('https');
 
 /*
@@ -24,9 +25,21 @@ https.get('https://qa1-aws.oceaniacruises.com/request-brochure', (response) => {
 
 */
 
-// only receive the header
 https.get('https://qa1-aws.oceaniacruises.com/request-brochure', (response) => {
-    console.log(response.headers);
-}).on('error', (error) => {
-    console.error(error);
+    let data = '';
+    response.on('data', (chunk) => {
+        data += chunk;
+    });
+    response.on('end', () => {
+        console.log(data);
+    });
 });
+
+(async () => {
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.goto('https://qa1-aws.oceaniacruises.com/request-brochure');
+    const content = await page.content();
+    console.log(content);
+    await browser.close();
+})();
